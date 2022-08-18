@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import logoImage from '../../assets/img/logo.svg';
 import { AiOutlineSearch } from 'react-icons/ai';
 
+// Context
+import MyContext from '../../context/context';
+
 class Header extends Component {
   render() {
     return (
@@ -27,12 +30,9 @@ class Header extends Component {
             flex 
             drop-shadow-md 
             hover:drop-shadow-lg 
-            rounded 
             bg-white w-[315px]
-            mx-auto rounded-[20px]
-            transition
-            ease-in
-            delay-150
+            mx-auto 
+            rounded-[20px]
             cursor-pointer
             ">
           <div
@@ -69,5 +69,7 @@ class Header extends Component {
     );
   }
 }
+
+Header.contextType = MyContext;
 
 export default Header;
