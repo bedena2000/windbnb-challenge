@@ -6,12 +6,13 @@ export default class EachRoom extends Component {
     return (
       <div
         className="
+          sm:w-[395px]
       ">
         {/* image */}
         <div
           className="
             mb-[13.29px]
-            w-[350px]
+            w-full
             h-[238.35px]
             rounded-[20px]
             overflow-hidden
@@ -28,7 +29,7 @@ export default class EachRoom extends Component {
         </div>
         {/* image */}
         <div className="flex items-center justify-between">
-          <div className='flex items-center'>
+          <div className="flex items-center">
             {this.props.superHost && (
               <div
                 className="
@@ -52,7 +53,7 @@ export default class EachRoom extends Component {
             </p>
           </div>
 
-          <div className='flex items-center'>
+          <div className="flex items-center">
             <AiFillStar
               className="
                 mr-[7.12px]

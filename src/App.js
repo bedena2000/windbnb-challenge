@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Menu from './components/Menu/Menu';
+import Footer from './components/Footer/Footer';
 // Context
 import MyContext from './context/context';
 
@@ -43,6 +44,7 @@ class App extends Component {
           <Menu />
           <Header />
           <Main />
+          <Footer />
         </MyContext.Provider>
       </div>
     );

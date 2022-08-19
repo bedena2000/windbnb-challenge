@@ -31,6 +31,9 @@ export default class Main extends Component {
             mt-[24px]
             flex
             flex-col
+            sm:flex-row
+            sm:flex-wrap
+            sm:justify-between
             gap-[32px]
         ">
           {this.context.rooms

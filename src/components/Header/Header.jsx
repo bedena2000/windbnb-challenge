@@ -16,6 +16,9 @@ class Header extends Component {
                 container
                 p-[13px]
                 flex
+                sm:flex-row
+                sm:justify-between
+                sm:items-center
                 flex-col
                 gap-[39px]
             ">
@@ -31,7 +34,8 @@ class Header extends Component {
             drop-shadow-md 
             hover:drop-shadow-lg 
             bg-white w-[315px]
-            mx-auto 
+            mx-auto
+            sm:m-[0px] 
             rounded-[20px]
             cursor-pointer
             ">
