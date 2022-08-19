@@ -6,7 +6,6 @@ export default class SearchButton extends Component {
 
 
   render() {
-    console.log(this.props);
     return (
         <div className='hidden sm:block'>
         <button className="flex items-center shadow-lg bg-[#EB5757] pt-[15px] pb-[15.94px] pl-[27px] pr-[24px] rounded-[16px] mx-auto">

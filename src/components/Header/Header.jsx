@@ -11,6 +11,7 @@ class Header extends Component {
   render() {
     return (
       <header
+        onClick={this.context.changeMenu}
         className="
                 mx-auto
                 container

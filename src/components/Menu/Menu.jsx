@@ -8,8 +8,16 @@ import { AiOutlineSearch } from 'react-icons/ai';
 // Components
 import Counter from '../Counter/Counter';
 import SearchButton from '../SearchButton.jsx/SearchButton';
+import MyContext from '../../context/context';
 
 export default class Menu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chosenProperties: 'location',
+    };
+  }
+
   render() {
     return (
       <div
@@ -17,7 +25,7 @@ export default class Menu extends Component {
         bg-white
         w-full
         absolute
-        z-[2]
+        z-[21]
         top-0
         left-0
         px-[16px]
@@ -35,7 +43,7 @@ export default class Menu extends Component {
             Edit your search
           </p>
           <div className="flex justify-center items-center scale-100 hover:scale-110 cursor-pointer border-[1px] border-white hover:border-black transition ease-in delay-10 bg-white hover:bg-slate-100">
-            <AiOutlineClose />
+            <AiOutlineClose onClick={this.context.changeMenu} />
           </div>
         </div>
 
@@ -57,7 +65,13 @@ export default class Menu extends Component {
             sm:flex
             sm:flex-col
             sm:justify-center
-          ">
+            cursor-pointer
+          "
+            onClick={() => {
+              this.setState({
+                chosenProperties: 'location',
+              });
+            }}>
             <p
               className="
                 text-[#333333]
@@ -85,7 +99,15 @@ export default class Menu extends Component {
             sm:flex
             sm:flex-col
             sm:justify-center
-          ">
+            cursor-pointer
+
+          "
+          onClick={() => {
+            this.setState({
+              chosenProperties: 'guests',
+            });
+          }} 
+          >
             <p
               className="
                 text-[#333333]
@@ -95,59 +117,64 @@ export default class Menu extends Component {
             ">
               Guest
             </p>
-            <h3
+            <input
               className="
                 text-[#BDBDBD]
                 text-[14px]
                 font-normal
-            ">
-              Add guests
-            </h3>
+                outline-none
+                border-none
+                border-w-[0px]
+            "
+              readOnly
+              placeholder="Add guests"
+            />
           </div>
           <div
             className="
-            py-[12px]
-            px-[26px]
+            sm:py-[12px]
+            sm:px-[26px]
           ">
             <SearchButton />
           </div>
         </div>
 
-        <div
-          className="
-          hidden
-          sm:block
+        {this.state.chosenProperties === 'guests' ? (
+          <div
+            className="
+          
         ">
-          <Counter name="Adults" description="Ages 13 or above" />
-          <Counter name="Children" description="Ages 2-12" />
-        </div>
-
-        <div className="mt-[35px] flex flex-col gap-[34.53px]">
-          <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
-            <FaMapMarkerAlt className="mr-[10px]" />{' '}
-            <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
-              Helsinki, Finland
-            </p>{' '}
+            <Counter name="Adults" description="Ages 13 or above" />
+            <Counter name="Children" description="Ages 2-12" />
           </div>
-          <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
-            <FaMapMarkerAlt className="mr-[10px]" />{' '}
-            <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
-              Turku, Finland
-            </p>{' '}
+        ) : (
+          <div className="mt-[35px] flex flex-col gap-[34.53px]">
+            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+              <FaMapMarkerAlt className="mr-[10px]" />{' '}
+              <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
+                Helsinki, Finland
+              </p>{' '}
+            </div>
+            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+              <FaMapMarkerAlt className="mr-[10px]" />{' '}
+              <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
+                Turku, Finland
+              </p>{' '}
+            </div>
+            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+              <FaMapMarkerAlt className="mr-[10px]" />{' '}
+              <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
+                Oulu, Finland
+              </p>{' '}
+            </div>
+            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+              <FaMapMarkerAlt className="mr-[10px]" />{' '}
+              <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
+                Vaasa, Finland
+              </p>{' '}
+            </div>
           </div>
-          <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
-            <FaMapMarkerAlt className="mr-[10px]" />{' '}
-            <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
-              Oulu, Finland
-            </p>{' '}
-          </div>
-          <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
-            <FaMapMarkerAlt className="mr-[10px]" />{' '}
-            <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
-              Vaasa, Finland
-            </p>{' '}
-          </div>
-        </div>
+        )}
 
         <div className="mt-[181.53px] sm:hidden">
           <button className="flex items-center shadow-lg bg-[#EB5757] pt-[15px] pb-[15.94px] pl-[27px] pr-[24px] rounded-[16px] mx-auto">
@@ -165,3 +192,5 @@ export default class Menu extends Component {
     );
   }
 }
+
+Menu.contextType = MyContext;
