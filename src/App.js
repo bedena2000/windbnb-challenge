@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // Components
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import Menu from './components/Menu/Menu';
 // Context
 import MyContext from './context/context';
 
@@ -11,6 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       arrayOfRooms: [],
+      menuIsVisible: false
     };
   }
 
@@ -32,11 +34,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='relative'>
         <MyContext.Provider
           value={{
             rooms: this.state.arrayOfRooms,
+            isMenuVisible: this.state.menuIsVisible
           }}>
+          <Menu />
           <Header />
           <Main />
         </MyContext.Provider>

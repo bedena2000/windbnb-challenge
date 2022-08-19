@@ -7,13 +7,6 @@ import MyContext from '../../context/context';
 import EachRoom from '../EachRoom/EachRoom';
 
 export default class Main extends Component {
-  componentDidMount() {
-    console.log(this.context);
-  }
-  componentDidUpdate() {
-    console.log(this.context);
-  }
-
   render() {
     return (
       <div
@@ -33,12 +26,13 @@ export default class Main extends Component {
           <p className="text-[#4F4F4F] text-[14px] font-medium ">12+ Stays</p>
         </div>
 
-        <div className='
+        <div
+          className="
             mt-[24px]
             flex
             flex-col
             gap-[32px]
-        '>
+        ">
           {this.context.rooms
             ? this.context.rooms.map((item) => {
                 return (
