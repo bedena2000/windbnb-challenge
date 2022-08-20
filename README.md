@@ -6,8 +6,8 @@
 <div>LIVE DEMO: <a href="https://windbnb-challenge-bedena2000.netlify.app/" target="_blank">WindBNB Challenge</a> </div>
 
 <h2>Used tools</h2>
-<a href="https://tailwindcss.com/">Tailwind CSS</a>
-<a href="https://www.framer.com/motion/">Framer Motion</a>
+<a href="https://tailwindcss.com/">Tailwind CSS</a> <br />
+<a href="https://www.framer.com/motion/">Framer Motion</a> <br />
 <a href="https://axios-http.com/">Axios</a>
 
 <h2>Project IDEA</h2>
