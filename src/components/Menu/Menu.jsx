@@ -9,6 +9,9 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import Counter from '../Counter/Counter';
 import MyContext from '../../context/context';
 
+// Motion Framer
+import { motion } from 'framer-motion';
+
 export default class Menu extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +32,14 @@ export default class Menu extends Component {
 
   render() {
     return (
-      <div
+      <motion.div
+        initial={{
+          translateX: -100,
+        }}
+        animate={{
+          translateX: 0,
+        }}
+       
         className="
         bg-white
         w-full
@@ -254,7 +264,7 @@ export default class Menu extends Component {
             <p className="text-[#F2F2F2] text-[14px] font-bold leading-[17.57px]">Search</p>
           </button>
         </div>
-      </div>
+      </motion.div>
     );
   }
 }

@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { AiFillStar } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 
 export default class EachRoom extends Component {
   render() {
     return (
-      <div
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{
+          opacity: 1,
+        }}
+        viewport={{
+          once: true
+        }}
         className="
           sm:w-[395px]
       ">
@@ -78,7 +88,7 @@ export default class EachRoom extends Component {
         ">
           {this.props.title}
         </h2>
-      </div>
+      </motion.div>
     );
   }
 }
