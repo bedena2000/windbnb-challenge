@@ -15,11 +15,12 @@ class App extends Component {
     this.state = {
       arrayOfRooms: [],
       menuIsVisible: false,
-      location: "Helsinki",
-      guests: 0
+      location: 'Helsinki',
+      guestsNumber: 0,
     };
     this.changeMenuVisibility = this.changeMenuVisibility.bind(this);
     this.changeLocation = this.changeLocation.bind(this);
+    this.changeGuest = this.changeGuest.bind(this);
   }
 
   changeMenuVisibility() {
@@ -30,14 +31,20 @@ class App extends Component {
 
   changeLocation(chosenLocation) {
     this.setState({
-      location: chosenLocation
-    })
-  };
+      location: chosenLocation,
+    });
+  }
 
   changeGuestsAmount(amountOfGuests) {
     this.setState({
-      guests: amountOfGuests
-    })
+      guests: amountOfGuests,
+    });
+  }
+
+  changeGuest(amount) {
+    this.setState({
+      guestsNumber: amount,
+    });
   }
 
   // Data
@@ -58,8 +65,9 @@ class App extends Component {
 
   render() {
     const filteredRooms = this.state.arrayOfRooms.filter((item) => {
-      return item.city === this.state.location && item.maxGuests >= this.state.guests
+      return item.city === this.state.location && item.maxGuests >= this.state.guestsNumber;
     });
+
     return (
       <div className="relative">
         <MyContext.Provider
@@ -68,11 +76,12 @@ class App extends Component {
             isMenuVisible: this.state.menuIsVisible,
             changeMenu: this.changeMenuVisibility,
             location: this.state.location,
-            guestsAmount: this.state.guests,
-            changeLocation: this.changeLocation
+            adults: this.state.adults,
+            children: this.state.children,
+            changeLocation: this.changeLocation,
+            changeGuest: this.changeGuest,
           }}>
           {this.state.menuIsVisible ? <Background /> : null}
-          {/* <Menu /> */}
           {this.state.menuIsVisible ? <Menu /> : null}
           <Header />
           <Main />

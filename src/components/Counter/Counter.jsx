@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { BsPatchMinus } from 'react-icons/bs';
 import { BsPlusSquare } from 'react-icons/bs';
 
+// Context
+import MyContext from '../../context/context';
+
 export default class Counter extends Component {
   constructor(props) {
     super(props);
@@ -23,17 +26,25 @@ export default class Counter extends Component {
                 this.setState({
                   counter: this.state.counter - 1,
                 });
+                setTimeout(() => {
+                  this.props.changeGuestsAmount(this.state.counter, this.props.whosIsThis);
+                }, 0);
               }
             }}
             className="mr-[15px]"
           />
-          <p className="font-bold text-[14px] leading-[17.54px] text-[#333333]">{this.state.counter}</p>
+          <p className="font-bold text-[14px] leading-[17.54px] text-[#333333]">
+            {this.state.counter}
+          </p>
           <BsPlusSquare
-            onClick={() =>
+            onClick={() => {
               this.setState({
                 counter: this.state.counter + 1,
-              })
-            }
+              });
+              setTimeout(() => {
+                this.props.changeGuestsAmount(this.state.counter, this.props.whosIsThis);
+              }, 0);
+            }}
             className="ml-[15px]"
           />
         </div>
@@ -41,3 +52,5 @@ export default class Counter extends Component {
     );
   }
 }
+
+Counter.contextType = MyContext;

@@ -15,16 +15,16 @@ export default class Menu extends Component {
     this.state = {
       chosenProperties: 'location',
       chosenCity: 'Helsinki',
-      guestsAmount: 0
+      adults: 0,
+      children: 0,
     };
     this.changeGuestsAmount = this.changeGuestsAmount.bind(this);
-  };
+  }
 
-  changeGuestsAmount(amount) {
-    const resultAmount = 0;
+  changeGuestsAmount(amount, whosAmount) {
     this.setState({
-      guestsAmount: this.guestsAmount + resultAmount
-    })
+      [whosAmount]: amount,
+    });
   }
 
   render() {
@@ -127,15 +127,20 @@ export default class Menu extends Component {
             </p>
             <input
               className="
-                text-[#BDBDBD]
                 text-[14px]
                 font-normal
+              text-[#333333]
                 outline-none
                 border-none
                 border-w-[0px]
             "
               readOnly
               placeholder="Add guests"
+              value={
+                this.state.adults !== 0 || this.state.children !== 0
+                  ? `Adults: ${this.state.adults}, Children: ${this.state.children}`
+                  : ''
+              }
             />
           </div>
           <div
@@ -144,7 +149,10 @@ export default class Menu extends Component {
             sm:px-[26px]
           ">
             <button
-              onClick={() => this.context.changeLocation(this.state.chosenCity)}
+              onClick={() => {
+                this.context.changeLocation(this.state.chosenCity);
+                this.context.changeGuest(this.state.adults + this.state.children);
+              }}
               className="sm:flex hidden items-center shadow-lg bg-[#EB5757] pt-[15px] pb-[15.94px] pl-[27px] pr-[24px] rounded-[16px] mx-auto">
               <IconContext.Provider
                 value={{
@@ -163,8 +171,18 @@ export default class Menu extends Component {
             className="
           
         ">
-            <Counter changeAmount={this.changeGuestsAmount} name="Adults" description="Ages 13 or above" />
-            <Counter changeAmount={this.changeGuestsAmount} name="Children" description="Ages 2-12" />
+            <Counter
+              changeGuestsAmount={this.changeGuestsAmount}
+              whosIsThis="adults"
+              name="Adults"
+              description="Ages 13 or above"
+            />
+            <Counter
+              changeGuestsAmount={this.changeGuestsAmount}
+              whosIsThis="children"
+              name="Children"
+              description="Ages 2-12"
+            />
           </div>
         ) : (
           <div className="mt-[35px] flex flex-col gap-[34.53px]">
@@ -220,7 +238,12 @@ export default class Menu extends Component {
         )}
 
         <div className="mt-[181.53px] sm:hidden">
-          <button className="flex items-center shadow-lg bg-[#EB5757] pt-[15px] pb-[15.94px] pl-[27px] pr-[24px] rounded-[16px] mx-auto">
+          <button
+            onClick={() => {
+              this.context.changeLocation(this.state.chosenCity);
+              this.context.changeGuest(this.state.adults + this.state.children);
+            }}
+            className="flex items-center shadow-lg bg-[#EB5757] pt-[15px] pb-[15.94px] pl-[27px] pr-[24px] rounded-[16px] mx-auto">
             <IconContext.Provider
               value={{
                 color: '#F2F2F2',
