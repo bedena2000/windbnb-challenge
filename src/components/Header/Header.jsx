@@ -48,7 +48,7 @@ class Header extends Component {
             border-r-[1px]
             border-[#F2F2F2]
           ">
-            <h3 className="text-[#333333] font-normal text-[14px]">Helsinki, Finland</h3>
+            <h3 className="text-[#333333] font-normal text-[14px]">{this.context.location}, Finland</h3>
           </div>
           <div
             className="

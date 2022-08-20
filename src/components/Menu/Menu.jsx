@@ -7,7 +7,6 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 // Components
 import Counter from '../Counter/Counter';
-import SearchButton from '../SearchButton.jsx/SearchButton';
 import MyContext from '../../context/context';
 
 export default class Menu extends Component {
@@ -15,7 +14,17 @@ export default class Menu extends Component {
     super(props);
     this.state = {
       chosenProperties: 'location',
+      chosenCity: 'Helsinki',
+      guestsAmount: 0
     };
+    this.changeGuestsAmount = this.changeGuestsAmount.bind(this);
+  };
+
+  changeGuestsAmount(amount) {
+    const resultAmount = 0;
+    this.setState({
+      guestsAmount: this.guestsAmount + resultAmount
+    })
   }
 
   render() {
@@ -88,7 +97,7 @@ export default class Menu extends Component {
                 font-normal
                 text-[#333333]
             ">
-              Helsinki, Finland
+              {this.state.chosenCity}, Finland
             </h3>
           </div>
 
@@ -102,12 +111,11 @@ export default class Menu extends Component {
             cursor-pointer
 
           "
-          onClick={() => {
-            this.setState({
-              chosenProperties: 'guests',
-            });
-          }} 
-          >
+            onClick={() => {
+              this.setState({
+                chosenProperties: 'guests',
+              });
+            }}>
             <p
               className="
                 text-[#333333]
@@ -135,7 +143,18 @@ export default class Menu extends Component {
             sm:py-[12px]
             sm:px-[26px]
           ">
-            <SearchButton />
+            <button
+              onClick={() => this.context.changeLocation(this.state.chosenCity)}
+              className="sm:flex hidden items-center shadow-lg bg-[#EB5757] pt-[15px] pb-[15.94px] pl-[27px] pr-[24px] rounded-[16px] mx-auto">
+              <IconContext.Provider
+                value={{
+                  color: '#F2F2F2',
+                  size: '17.05px',
+                }}>
+                <AiOutlineSearch className="mr-[10.95px]" />
+              </IconContext.Provider>
+              <p className="text-[#F2F2F2] text-[14px] font-bold leading-[17.57px]">Search</p>
+            </button>
           </div>
         </div>
 
@@ -144,30 +163,54 @@ export default class Menu extends Component {
             className="
           
         ">
-            <Counter name="Adults" description="Ages 13 or above" />
-            <Counter name="Children" description="Ages 2-12" />
+            <Counter changeAmount={this.changeGuestsAmount} name="Adults" description="Ages 13 or above" />
+            <Counter changeAmount={this.changeGuestsAmount} name="Children" description="Ages 2-12" />
           </div>
         ) : (
           <div className="mt-[35px] flex flex-col gap-[34.53px]">
-            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+            <div
+              onClick={() =>
+                this.setState({
+                  chosenCity: 'Helsinki',
+                })
+              }
+              className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
               <FaMapMarkerAlt className="mr-[10px]" />{' '}
               <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
                 Helsinki, Finland
               </p>{' '}
             </div>
-            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+            <div
+              onClick={() =>
+                this.setState({
+                  chosenCity: 'Turku',
+                })
+              }
+              className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
               <FaMapMarkerAlt className="mr-[10px]" />{' '}
               <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
                 Turku, Finland
               </p>{' '}
             </div>
-            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+            <div
+              onClick={() =>
+                this.setState({
+                  chosenCity: 'Oulu',
+                })
+              }
+              className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
               <FaMapMarkerAlt className="mr-[10px]" />{' '}
               <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
                 Oulu, Finland
               </p>{' '}
             </div>
-            <div className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
+            <div
+              onClick={() =>
+                this.setState({
+                  chosenCity: 'Vaasa',
+                })
+              }
+              className="flex items-center px-[5px] pt-[2px] pb-[2.53px]">
               <FaMapMarkerAlt className="mr-[10px]" />{' '}
               <p className="text-[14px] text-[#4F4F4F] hover:underline transition ease-in delay-150 cursor-pointer">
                 Vaasa, Finland
